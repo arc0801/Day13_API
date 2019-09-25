@@ -26,7 +26,8 @@ public class Server {
 		OutputStream os = null;
 		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
-
+		String str = null;
+		
 		try {
 			boolean check = true;
 			ss = new ServerSocket(8282);
@@ -36,7 +37,7 @@ public class Server {
 				is = sc.getInputStream(); //byte
 				ir = new InputStreamReader(is); //char
 				br = new BufferedReader(ir); //String
-				String str = br.readLine();
+				str = br.readLine();
 
 				if(str.equals("q")) {
 					break;
