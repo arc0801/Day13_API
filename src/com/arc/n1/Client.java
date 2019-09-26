@@ -29,8 +29,8 @@ public class Client {
 
 		try {
 			boolean check = true;
+			sc = new Socket("211.238.142.34", 8282);
 			while(check) {
-				sc = new Socket("211.238.142.34", 8282);
 				System.out.println("서버로 전송할 메세지를 입력하세요");
 				String str = ssc.next();
 				os = sc.getOutputStream(); //byte
@@ -38,18 +38,20 @@ public class Client {
 				bw = new BufferedWriter(ow);
 				bw.write(str + "\r\n");
 				bw.flush();
-				System.out.println("서버로 전송 완료");
 
-				if(str.equals("q")) {
+				if(str.toLowerCase().equals("q")) {
 					break;
 				}
+				System.out.println("서버로 전송 완료");
+				
+				
 				System.out.println("클라이언트 메세지 받을 준비");
 				is = sc.getInputStream();
 				ir = new InputStreamReader(is);
 				br = new BufferedReader(ir);
 				str = br.readLine();
 
-				if(str.equals("q")) {
+				if(str.toLowerCase().equals("q")) {
 					break;
 				}
 				System.out.println(str);

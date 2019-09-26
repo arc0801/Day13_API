@@ -27,9 +27,9 @@ public class Server {
 		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
 		String str = null;
+		boolean check = true;
 		
 		try {
-			boolean check = true;
 			ss = new ServerSocket(8282);
 			while(check) {
 				System.out.println("클라이언트 접속 받을 준비 중");
@@ -39,11 +39,12 @@ public class Server {
 				br = new BufferedReader(ir); //String
 				str = br.readLine();
 
-				if(str.equals("q")) {
+				if(str.toLowerCase().equals("q")) {
 					break;
 				}
 				System.out.println(str);
 
+				
 				os = sc.getOutputStream();
 				ow = new OutputStreamWriter(os);
 				bw = new BufferedWriter(ow);
@@ -53,7 +54,7 @@ public class Server {
 				bw.flush();
 				System.out.println("클라이언트로 전송 완료");
 
-				if(str.equals("q")) {
+				if(str.toLowerCase().equals("q")) {
 					break;
 				}
 			}//while
