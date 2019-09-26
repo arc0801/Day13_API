@@ -1,4 +1,4 @@
-package com.arc.n2;
+package com.arc.n2.food;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,20 +18,26 @@ import java.util.StringTokenizer;
 public class MenuMaker {
 	private ArrayList<String> lunchs;
 	private ArrayList<String> dinners;
-	
-	public void selectMenu(String select) {
+
+	public String selectMenu(String select) {
+		Random random = new Random();
+		String menu = null;
+
 		if(select.equals("1")) {
-		
-	}else {
-		
+			menu = lunchs.get(random.nextInt(lunchs.size()));
+
+		}else {
+			menu = dinners.get(random.nextInt(dinners.size()));
+		}
+		return menu;
 	}
 	
 	public void init() {
 		this.lunchs = this.makeMenu("lunch.test.txt", "-");
 		this.dinners = this.makeMenu("dinner.test.txt", ",");
 	}
-	
-	public ArrayList<String> makeMenu(String fileName, String delim) {
+
+	private ArrayList<String> makeMenu(String fileName, String delim) {
 		ServerSocket ss = null;
 		Socket sc = null;
 		InputStream is = null;
@@ -88,9 +94,9 @@ public class MenuMaker {
 				bw.flush();
 				System.out.println("클라이언트로 전송 완료");
 
-				
-				
-				
+
+
+
 			}else if(str.equals("2")) {
 				file = new File("C:\\test", "dinner.test.txt");
 				fr = new FileReader(file);

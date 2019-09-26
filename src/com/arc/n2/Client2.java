@@ -27,7 +27,7 @@ public class Client2 {
 		InputStreamReader ir = null;
 		BufferedReader br = null;
 		
-		try {
+		try {//localhost, 172.0.0.1  => 내 컴퓨터 주소
 			sc = new Socket("211.238.142.35", 8282);
 			System.out.println("1. 점심메뉴 추천");
 			System.out.println("2. 저녁메뉴 추천");
