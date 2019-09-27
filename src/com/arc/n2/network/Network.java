@@ -10,26 +10,21 @@ import java.net.Socket;
 
 public class Network {
 	
-	
-	
-	public void receive(Socket sc) throws Exception{
-		
-		
+	public String receive(Socket sc) throws Exception{
 		InputStream is = sc.getInputStream();
 		InputStreamReader ir = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(ir);
 		String str = br.readLine();
-		System.out.println(str);
+		return str;
+	}//receive
 
-	}
-
-	public void send(Socket sc, String msg) throws Exception{
-		
-		OutputStream os = sc.getOutputStream();
-		OutputStreamWriter ow = new OutputStreamWriter(os);
-		BufferedWriter bw = new BufferedWriter(ow);
-		bw.write(msg + "\r\n");
-		bw.flush();
-	}
 	
+	public void send(Socket sc, String str) throws Exception{
+		OutputStream os = sc.getOutputStream();//byte
+		OutputStreamWriter ow = new OutputStreamWriter(os);//char
+		BufferedWriter bw = new BufferedWriter(ow);
+		bw.write(str + "\r\n");
+		bw.flush();
+	}//send
+
 }

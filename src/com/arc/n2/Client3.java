@@ -11,42 +11,41 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import com.arc.n2.network.Network;
+
 public class Client3 {
 
 	public static void main(String[] args) {
 		//id 입력
 		//pw 입력
 		//서버로 전송
+		Network network = new Network();
 		Scanner scanner = new Scanner(System.in);
-				
+		
+		System.out.println("ID 입력");
+		String id = scanner.next();
+		System.out.println("PW 입력");
+		String pw = scanner.next();
+		
+		String msg = id + "," + pw;
+		Socket sk = null;
+		
 		try {
-			Socket sc = new Socket("211.238.142.35", 8282);
-			System.out.println("ID 입력");
-			String yId = scanner.next();
-			System.out.println("PW 입력");
-			String yPw = scanner.next();
+			sk = new Socket("211.238.142.35", 8282);
+			network.send(sk, msg);
 			
-			OutputStream os = sc.getOutputStream();
-			OutputStreamWriter ow = new OutputStreamWriter(os);
-			BufferedWriter bw = new BufferedWriter(ow);
-			bw.write(yId + yPw + "\r\n");
-			bw.flush();
+			msg = network.receive(sk);
+			if(msg.equals("1")) {
+				System.out.println(id+"님 환영합니다\\^_^/");
+			}else {
+				System.out.println("로그인 실패");
+			}
 			
-			
-			InputStream is = sc.getInputStream();
-			InputStreamReader ir = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(ir);
-			String str = br.readLine();
-			System.out.println(str);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			
-			
-		}//try
-		
+		}
 
 	}//main
 

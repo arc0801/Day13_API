@@ -29,7 +29,7 @@ public class Client {
 
 		try {
 			boolean check = true;
-			sc = new Socket("211.238.142.34", 8282);
+			sc = new Socket("211.238.142.35", 8282);
 			while(check) {
 				System.out.println("서버로 전송할 메세지를 입력하세요");
 				String str = ssc.next();
